@@ -19,13 +19,13 @@ export default function HeroSectionSlider() {
                 <img className='h-[70vh] object-cover' src={sliderImageOne} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-                <img src={sliderImageTwo} alt="" />
+                <img className='h-[70vh] object-cover' src={sliderImageTwo} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-                <img src={sliderImageOne} alt="" />
+                <img className='h-[70vh] object-cover' src={sliderImageOne} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-                <img src={sliderImageTwo} alt="" />
+                <img className='h-[70vh] object-cover' src={sliderImageTwo} alt="" />
             </SwiperSlide>
         </Swiper>
     )
