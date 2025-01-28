@@ -8,20 +8,20 @@ export default function BannerSection() {
       {/* left child */}
       <div className='relative'>
         <img src={bannerImageOne} alt="" />
-        <div className='absolute top-8 left-8'>
+        <div className='absolute top-8 left-8 space-y-4'>
           <p className='text-2xl font-semibold'>Fruits & Vegetables</p>
-          <p>Get Upto 30% Off</p>
-          <button>Shop Now</button>
+          <p className='font-semibold opacity-70'>Get Upto 30% Off</p>
+          <button className='bg-black text-white px-6 py-2 font-semibold rounded-md'>Shop Now</button>
         </div>
       </div>
 
       {/* right child */}
       <div className='relative'>
         <img src={bannerImageTwo} alt="" />
-        <div className='absolute top-8 left-8'>
+        <div className='absolute top-8 left-8 space-y-4'>
           <p className='text-2xl font-semibold'>Freshly Baked Buns</p>
-          <p>Get Upto 25% Off</p>
-          <button>Shop Now</button>
+          <p className='font-semibold opacity-70'>Get Upto 25% Off</p>
+          <button className='bg-black text-white px-6 py-2 font-semibold rounded-md'>Shop Now</button>
         </div>
       </div>
     </div>
