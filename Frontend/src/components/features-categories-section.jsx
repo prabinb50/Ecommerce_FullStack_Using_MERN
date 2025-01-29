@@ -47,10 +47,25 @@ export default function FeaturesCategoriesSection() {
             {/* right child */}
             <div>
                 <Swiper
-                    slidesPerView={6}
+                    slidesPerView={1}
                     spaceBetween={30}
+
                     pagination={{
                         clickable: true,
+                    }}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                        },
+                        1200: {
+                            slidesPerView: 5,
+                        }
                     }}
                     modules={[Pagination]}
                     className="mySwiper"

@@ -13,10 +13,13 @@ export default function MiddleNavbar() {
                     alt="logo"
                 />
             </div>
-            <div className="flex space-x-8">
-                <input className=" border border-gray rounded-md w-96 pl-2 " type="text" placeholder="Search for product" />
-                <button className="flex gap-2 items-center border border-gray px-4 rounded-md hover:bg-gray-300 hover:cursor-pointer "> <MapPin size={16} /> Location</button>
+            <div className='hidden lg:block'>
+                <div className="flex space-x-8 ">
+                    <input className=" border border-gray rounded-md w-96 pl-2 " type="text" placeholder="Search for product" />
+                    <button className="flex gap-2 items-center border border-gray px-4 rounded-md hover:bg-gray-300 hover:cursor-pointer "> <MapPin size={16} /> Location</button>
+                </div>
             </div>
+
 
             <div className="flex gap-4">
                 <Heart />

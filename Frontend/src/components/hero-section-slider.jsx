@@ -16,16 +16,16 @@ export default function HeroSectionSlider() {
     return (
         <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-10/12 mx-auto rounded-md mt-8">
             <SwiperSlide>
-                <img className='h-[70vh] object-cover' src={sliderImageOne} alt="" />
+                <img className='md:h-[70vh] object-cover' src={sliderImageOne} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-                <img className='h-[70vh] object-cover' src={sliderImageTwo} alt="" />
+                <img className='md:h-[70vh] object-cover' src={sliderImageTwo} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-                <img className='h-[70vh] object-cover' src={sliderImageOne} alt="" />
+                <img className='md:h-[70vh] object-cover' src={sliderImageOne} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-                <img className='h-[70vh] object-cover' src={sliderImageTwo} alt="" />
+                <img className='md:h-[70vh] object-cover' src={sliderImageTwo} alt="" />
             </SwiperSlide>
         </Swiper>
     )
