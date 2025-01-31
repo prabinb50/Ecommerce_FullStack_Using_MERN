@@ -1,10 +1,8 @@
 import React from 'react'
+import SingleProductCard from '../components/single-product-card'
 import myImage from "../../public/f1.jpg"
-import ReactStars from 'react-stars'
-import SingleProductCard from './single-product-card'
 
-export default function PopulaeProductSection() {
-
+export default function SingleCategory() {
     const products = [
         {
             image: myImage,
@@ -115,42 +113,22 @@ export default function PopulaeProductSection() {
             previousPrice: 250
         }
     ]
-
     return (
-        <div className='w-10/12 mx-auto space-y-8 mt-24'>
-            {/* First child */}
-            <p className='text-3xl font-semibold'>Popular Products</p>
 
-            {/* second child */}
+        <div className='w-10/12 mx-auto'>
+            <div className='bg-gray-300 py-24 text-5xl font-semibold text-center'>
+                Snacks & Munchies
+            </div>
+
+            {/* List of Products */}
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6'>
                 {
                     products.map((eachItem, index) => (
                         <SingleProductCard key={index} eachItem={eachItem}></SingleProductCard>
-
-                        // <div key={index} className='border border-gray-300 rounded-md flex flex-col items-center p-4 space-y-1.5'>
-                        //     <img src={eachItem.image} alt="" />
-                        //     <p className='font-semibold opacity-50 text-xs'>{eachItem.categoryName}</p>
-                        //     <p className='font-semibold text-sm'>{eachItem.productName}</p>
-
-                        //     <div className='flex items-center gap-2'>
-                        //         <ReactStars
-                        //             count={5}
-                        //             size={18}
-                        //             value={4.5}
-                        //             color2={'#ffd700'} />
-
-                        //         <p className='font-semibold opacity-70 text-sm'>{eachItem.rating} ({eachItem.review})</p>
-                        //     </div>
-
-                        //     <div className='flex items-center justify-between w-full'>
-                        //         <p className='font-semibold'>${eachItem.price} <span className='opacity-70 '>${eachItem.previousPrice}</span></p>
-                        //         <button className='bg-green-500 text-white font-semibold rounded-md px-4 py-1 text-sm'> + Add</button>
-                        //     </div>
-                        // </div>
                     ))
                 }
-
             </div>
+
         </div>
     )
 }
