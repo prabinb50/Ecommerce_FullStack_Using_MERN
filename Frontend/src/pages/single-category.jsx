@@ -128,7 +128,6 @@ export default function SingleCategory() {
                     ))
                 }
             </div>
-
         </div>
     )
 }
