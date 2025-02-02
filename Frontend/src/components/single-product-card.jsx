@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactStars from 'react-stars'
+import { NavLink } from "react-router"
 
 export default function SingleProductCard({ eachItem }) {
     return (
-        <div>
+        <NavLink to={`/shop/${eachItem.productName}`}>
             <div className='border border-gray-300 rounded-md flex flex-col items-center p-4 space-y-1.5'>
                 <img src={eachItem.image} alt="" />
                 <p className='font-semibold opacity-50 text-xs'>{eachItem.categoryName}</p>
@@ -48,7 +49,7 @@ export default function SingleProductCard({ eachItem }) {
                     <button className=" bg-green-500 text-white font-semibold rounded-md px-4 py-1 text-xs">Add</button>
                 </div>
             </div> */}
-        </div>
+        </NavLink>
 
     )
 }

@@ -13,9 +13,9 @@ export default function BottomNavbar() {
                 <div className='hidden lg:block'>
                     <div className='flex items-center gap-8'>
                         <NavLink to="/">Home</NavLink>
-                        <p>Shop</p>
-                        <p>Store</p>
-                        <p className='whitespace-nowrap'>Mega menu</p>
+                        <NavLink to="/shop">Shop</NavLink>
+                        <NavLink to="/stores">Stores</NavLink>
+                        <NavLink to="/mega-menu" className='whitespace-nowrap'>Mega menu</NavLink>
                         <NavLink to="/blog">Pages</NavLink>
                         <NavLink to="/dashboard">Dashborad</NavLink>
                         <NavLink to="/docs">Docs</NavLink>
