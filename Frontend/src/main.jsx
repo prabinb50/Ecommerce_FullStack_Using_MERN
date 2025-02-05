@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router";
-import Docs from "./pages/Docs.jsx";
+
 import Dashboard from "./pages/dashboard.jsx";
 import SingleCategory from "./pages/single-category.jsx";
 import TopNavbar from "./components/top-navbar.jsx";
@@ -11,13 +11,16 @@ import MiddleNavbar from "./components/middle-navbar.jsx";
 import BottomNavbar from "./components/bottom-navbar.jsx";
 import Footer from "./components/footer.jsx";
 import Blog from "./pages/blog.jsx";
-import Shop from "./pages/shop.jsx";
+// import Shop from "./pages/shop.jsx";
 import MegaMenu from "./pages/mega-menu.jsx";
 import Stores from "./pages/stores.jsx";
 import ProductDescerption from "./pages/product-description.jsx";
 import SignIn from "./pages/sign-in.jsx";
 import SignUp from "./pages/sign-up.jsx";
 import Reset_Password from "./components/forget-password.jsx";
+import Docs from "./pages/Docs.jsx";
+import Shop from "./pages/shop.jsx";
+
 
 // createRoot(document.getElementById("root")).render(
 
