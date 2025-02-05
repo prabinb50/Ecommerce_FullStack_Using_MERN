@@ -7,7 +7,9 @@ import PopulaeProductSection from './components/popular-product-section';
 import AssignmenttOne from './components/assignment-1';
 import AssignmentTwo from './components/assignment-2';
 
+
 export default function App() {
+
   return (
     <div className='space-y-4'>
       <HeroSectionSlider></HeroSectionSlider>

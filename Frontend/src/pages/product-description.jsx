@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactStars from 'react-stars'
 import { ShoppingBag } from 'lucide-react';
 import { ArrowRightLeft } from 'lucide-react';
 import { Heart } from 'lucide-react';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
+import InnerImageZoom from 'react-inner-image-zoom'
+import ChildComponent from '../components/child-component';
 
 export default function ProductDescerption() {
+
+    // State in react with hooks
+    const [count, setCount] = useState(0);
+
+    // useEffect Hook
+    // -> It runs after the page reloads and depends upon dependency array
+    useEffect(() => {
+        console.log("useEffect is running");
+
+    }, [count]);
+
+    // props properties in react
+    // props can only passed from parent to child and it cannot be changed by child components
+    const name = "Prabin Joshi"
+
     return (
         <div className='w-10/12 mx-auto grid grid-cols-2 gap-15 mt-8'>
             {/* Left child */}
             <div>
-                <img src="/product-1.jpg" alt="" className='rounded-md' />
+                {/* <img src="/product-1.jpg" alt="" className='rounded-md' /> */}
+                <InnerImageZoom src="/product-1.jpg" />
 
                 <div className='flex justify-between mt-4'>
                     <img src='/product-1.jpg' alt='' className=' h-20 border border-green-500 rounded-md ' />
@@ -43,10 +62,10 @@ export default function ProductDescerption() {
                     <span className='border border-gray-400 font-semibold px-4 py-2 rounded-md text-gray-500 cursor-pointer'>1kg</span>
                 </div>
 
-                <div className='mt-6'>
-                    <span className='border border-gray-200 px-2'>-</span>
-                    <span className='border border-gray-200 px-5'>1</span>
-                    <span className='border border-gray-200 px-2'>+</span>
+                <div className='mt-6 '>
+                    <span className='border border-gray-200  hover:bg-gray-200 px-2 cursor-pointer' onClick={(event) => setCount(count - 1)}>-</span>
+                    <span className='border border-gray-200 hover:bg-gray-200 px-5'>{count}</span>
+                    <span className='border border-gray-200 hover:bg-gray-200 px-2 cursor-pointer' onClick={(event) => setCount(count + 1)} >+</span>
                 </div>
 
                 <div className='flex items-center gap-2 mt-6'>
@@ -69,6 +88,8 @@ export default function ProductDescerption() {
                 </div>
 
                 <button className='font-semibold border px-4 py-2 rounded-md text-gray-400 text-sm mt-6 cursor-pointer hover:bg-gray-400 hover:text-white'>Share</button>
+
+                <ChildComponent name={name}></ChildComponent>
             </div>
         </div>
     )
