@@ -11,7 +11,6 @@ import MiddleNavbar from "./components/middle-navbar.jsx";
 import BottomNavbar from "./components/bottom-navbar.jsx";
 import Footer from "./components/footer.jsx";
 import Blog from "./pages/blog.jsx";
-// import Shop from "./pages/shop.jsx";
 import MegaMenu from "./pages/mega-menu.jsx";
 import Stores from "./pages/stores.jsx";
 import ProductDescerption from "./pages/product-description.jsx";
