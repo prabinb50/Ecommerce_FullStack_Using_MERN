@@ -21,38 +21,6 @@ import Docs from "./pages/Docs.jsx";
 import Shop from "./pages/shop.jsx";
 
 
-// createRoot(document.getElementById("root")).render(
-
-// <StrictMode>
-//   <BrowserRouter>
-//     <div className="space-y-4">
-//       <TopNavbar></TopNavbar>
-//       <MiddleNavbar></MiddleNavbar>
-//       <BottomNavbar></BottomNavbar>
-//       <hr className='text-gray-200' />
-//     </div>
-
-//     <Routes>
-//       <Route path="/" element={<App />} />
-//       <Route path="/shop" element={<Shop></Shop>} />
-//       <Route path="/stores" element={<Stores></Stores>} />
-//       <Route path="/mega-menu" element={<MegaMenu></MegaMenu>} />
-//       <Route path="/docs" element={<Docs />} />
-//       <Route path="/dashboard" element={<Dashboard />} />
-//       <Route path="/blog" element={<Blog />} />
-//       <Route path="/sign_in" element={<SignIn />} />
-//       <Route path="/sign_up" element={<SignUp />} />
-//       <Route path="/reset_password" element={<Reset_Password />} />
-
-//       <Route path="/categories/:id" element={<SingleCategory />} />
-//       <Route path="/shop/:id" element={<ProductDescerption />} />
-//     </Routes>
-
-//     <Footer></Footer>
-//   </BrowserRouter>
-// </StrictMode>
-// );
-
 export function Root() {
 
   const location = useLocation();
@@ -73,7 +41,7 @@ export function Root() {
         <Route path="/shop" element={<Shop></Shop>} />
         <Route path="/stores" element={<Stores></Stores>} />
         <Route path="/mega-menu" element={<MegaMenu></MegaMenu>} />
-        <Route path="/docs" element={<Docs />} />
+
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/sign_in" element={<SignIn />} />
