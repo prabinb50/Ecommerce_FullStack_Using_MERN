@@ -17,8 +17,8 @@ import ProductDescerption from "./pages/product-description.jsx";
 import SignIn from "./pages/sign-in.jsx";
 import SignUp from "./pages/sign-up.jsx";
 import Reset_Password from "./components/forget-password.jsx";
-import Docs from "./pages/Docs.jsx";
 import Shop from "./pages/shop.jsx";
+import Docs from "./pages/docs.jsx";
 
 
 export function Root() {
@@ -41,12 +41,12 @@ export function Root() {
         <Route path="/shop" element={<Shop></Shop>} />
         <Route path="/stores" element={<Stores></Stores>} />
         <Route path="/mega-menu" element={<MegaMenu></MegaMenu>} />
-
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/sign_in" element={<SignIn />} />
         <Route path="/sign_up" element={<SignUp />} />
         <Route path="/reset_password" element={<Reset_Password />} />
+        <Route path="/docs" element={<Docs></Docs>}></Route>
 
         <Route path="/categories/:id" element={<SingleCategory />} />
         <Route path="/shop/:id" element={<ProductDescerption />} />
