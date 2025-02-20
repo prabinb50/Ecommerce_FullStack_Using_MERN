@@ -103,6 +103,25 @@ app.patch("/products/:id", async (req, res) => {
 
 // 4) Delete a particular product
 app.delete("/products/:id", async (req, res) => {
+    try {
+        const checkProduct = await Product.findById(req.params.id);
+        if (!checkProduct) {
+            return res.status(404).json({
+                message: "Product not found"
+            })
+        }
+        
+        const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+        return res.status(200).json({
+            message: "Single product deleted successfully",
+            data: deletedProduct
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal server error",
+        })
+    }
 
 })
 
