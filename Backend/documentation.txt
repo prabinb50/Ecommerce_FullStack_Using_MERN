@@ -24,3 +24,7 @@ Backend cannot talk to database directly, it should use mongoose to talk to data
 5. "type": "module", add this in package.json
 6. npm i nodemon
 
+// multer vs cloudnary
+multer - used as middleware
+cloudnary - for storage
+
