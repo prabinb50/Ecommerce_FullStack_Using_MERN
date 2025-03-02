@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose"
-import { createCategory } from "./routes/categoryRoute.js";
-import multer from 'multer';
-const upload = multer({ dest: 'uploads/' })
+import 'dotenv/config'
+import categoryRoute from "./routes/categoryRoute.js"
+import productRoute from "./routes/productRoute.js"
 
 const router = express.Router();
 
@@ -21,7 +21,8 @@ try {
 }
 
 // API Endpoints
-router.post("/categories", upload.single('imageUrl'), createCategory);
+app.use("/categories", categoryRoute);
+app.use("/products", productRoute);
 
 app.get('/', (req, res) => {
     res.send("server is working");
