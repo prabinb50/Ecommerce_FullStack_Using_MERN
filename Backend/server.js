@@ -14,7 +14,7 @@ app.use(express.json());
 
 // connect to mongoDB database
 try {
-    mongoose.connect("mongodb+srv://joshiprabin17:GLlYWyKcNvqoeTMY@cluster0.zzdzy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+    mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB Connection Success");
 } catch (error) {
     console.log("MangoDB Connection Error", error);
@@ -28,10 +28,6 @@ app.get('/', (req, res) => {
     res.send("server is working");
 })
 
-app.get("/students", (req, res) => {
-    res.send("100 students here");
-})
-
-app.listen(3000, () => {
-    console.log("Example app listening on port 3000!");
+app.listen(process.env.APP_PORT, () => {
+    console.log(`Example app listening on port ${process.env.APP_PORT}`);
 })
