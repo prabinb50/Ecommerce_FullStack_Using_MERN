@@ -5,6 +5,8 @@ import { Category } from '../Schema/categorySchema.js';
 // 1. Create category
 export const createCategory = async (req, res) => {
     try {
+        // console.log(req.file);
+
         // check if name already exists
         const categoryExist = await Category.findOne({ name: req.body.name });
         if (categoryExist) {
@@ -20,7 +22,11 @@ export const createCategory = async (req, res) => {
             data: newCategory,
         })
     } catch (error) {
-        return res.status(500).json({ message: "Internal server error" });
+        return res.status(500).json({
+            message: "Internal server error",
+            error: error
+        }
+        );
     }
 };
 

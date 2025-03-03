@@ -1,3 +1,4 @@
+import cloudinary from "../lib/cloudinary.config.js";
 import { Product } from "../Schema/productSchema.js";
 
 // CRUD Operations For Product
@@ -5,7 +6,7 @@ import { Product } from "../Schema/productSchema.js";
 export const createProduct = async (req, res) => {
     try {
         // check if product name already taken or not
-        const productExits = await productRoute.findOne({
+        const productExits = await Product.findOne({
             name: req.body.name
         });
         if (productExits) {
@@ -13,15 +14,23 @@ export const createProduct = async (req, res) => {
                 message: "Name already taken, please choose different name",
             })
         }
+        // console.log(req.file);
 
-        const newProduct = await new Product(req.body).save();
+        // uplaod the image in cloudinary and get the url
+        // Handle the image upload before saving to database....upload a file (cloudinary - used as storage)
+        const cloudinaryResponse = await cloudinary.uploader.upload(req.file.path);
+
+        const newProduct = await new Product({ ...req.body, imageUrl: cloudinaryResponse.secure_url }).save();
         return res.status(201).json({
             message: "Product created successfully",
             data: newProduct,
         });
     } catch (error) {
+        console.log(error);
+
         return res.status(500).json({
             message: "Internal server error",
+
         })
     }
 }
@@ -61,15 +70,30 @@ export const getProductById = async (req, res) => {
 // 3) Update a particular product
 export const updateProductById = async (req, res) => {
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        // image (i.e., update gardaa image pathayo vaney) vako case maa  yesaree handle garney
+        if (req.file) {
+            const cloudinaryResponse = await cloudinary.uploader.upload(req.file.path);
+            const updatedProduct = await Product.findByIdAndUpdate(req.params.id, { ...req.body, imageUrl: cloudinaryResponse.secure_url }, { new: true });
 
+            if (!updatedProduct) {
+                return res.status(404).json({ message: "Product not found" }); // if category not found while doing update operations
+            }
+            return res.status(200).json({
+                message: "Product Updated Successfully",
+                data: updatedProduct
+            })
+        }
+
+        // if image is not uploaded then dont handle the image upload part
+        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedProduct) {
-            return res.status(404).json({ message: "Product not found" }); // if category not found while doing update operations
+            return res.status(404).json({ message: "Product not found" })
         }
         return res.status(200).json({
             message: "Product Updated Successfully",
             data: updatedProduct
         })
+
     } catch (error) {
         return res.status(500).json({ message: "Internal server error" });
     }
