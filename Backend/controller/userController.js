@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 const saltRounds = 10;
 import jwt from "jsonwebtoken";
 
-// Create User
+// Create/Register User
 export const registerUser = async (req, res) => {
     try {
         // check if user already exists
@@ -69,13 +69,18 @@ export const loginUser = async (req, res) => {
 export const getAllUsers = async (req, res) => {
     try {
         const allUsers = await User.find();
+
+        // ensure users exist before returning data
+        if (allUsers.length === 0) {
+            return res.status(404).json({ message: "No users found" });
+        }
         return res.status(200).json({
             message: "All users fetched succesfully",
             data: allUsers
         })
     } catch (error) {
         return res.status(500).json({
-            message: "error in fetching users",
+            message: "Error in fetching users",
             error: error
         })
     }
@@ -84,14 +89,79 @@ export const getAllUsers = async (req, res) => {
 // Get user by Id
 export const getUserById = async (req, res) => {
     try {
+        // Validate the id format before querying
+        // Validate MongoDB ObjectId format
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: "Invalid user ID format" });
+        }
 
+        const singleUser = await User.findById(req.params.id);
+        if (!singleUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        return res.status(200).json({
+            message: "Single user fetched successfully",
+            data: singleUser,
+        })
     } catch (error) {
-
+        return res.status(500).json({
+            message: "Internal server error",
+            error: error,
+        })
     }
 };
 
 // Update user by Id
-export const updateUserById = async (req, res) => { };
+export const updateUserById = async (req, res) => {
+    try {
+        // Validate MongoDB ObjectId format
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: "Invalid user ID format" });
+        }
+
+        // if image is not uploaded in user's operations then dont handle the image upload part
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" })
+        }
+        return res.status(200).json({
+            message: "User Updated Successfully",
+            data: updatedUser
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "Interval server error",
+            error: error,
+        })
+    }
+};
 
 // delete user by Id
-export const deleteUserById = async (req, res) => { };
+export const deleteUserById = async (req, res) => {
+    try {
+        // Validate MongoDB ObjectId format
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: "Invalid user ID format" });
+        }
+
+        // Check if the user exists
+        const checkUser = await User.findById(req.params.id);
+        if (!checkUser) {
+            return res.status(404).json({
+                message: "User not found.",
+            });
+        }
+
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
+        return res.status(200).json({
+            message: "User data delete successfully.",
+            data: deletedUser,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal server error.",
+            error: error,
+        });
+    }
+};

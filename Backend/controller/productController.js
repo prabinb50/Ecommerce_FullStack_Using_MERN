@@ -55,6 +55,10 @@ export const getAllProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
     try {
         const singleProduct = await Product.findById(req.params.id);
+        // product if not found
+        if (!singleProduct) {
+            return res.status(404).json({ message: "Product not found" });
+        }
         return res.status(200).json({
             message: "Single product fetched successfully",
             data: singleProduct
@@ -70,13 +74,14 @@ export const getProductById = async (req, res) => {
 // 3) Update a particular product
 export const updateProductById = async (req, res) => {
     try {
-        // image (i.e., update gardaa image pathayo vaney) vako case maa  yesaree handle garney
+        // image (i.e., update gardaa image pathayo vaney) vako case maa yesaree handle garney
         if (req.file) {
             const cloudinaryResponse = await cloudinary.uploader.upload(req.file.path);
             const updatedProduct = await Product.findByIdAndUpdate(req.params.id, { ...req.body, imageUrl: cloudinaryResponse.secure_url }, { new: true });
 
+            // if product not found while doing update operations
             if (!updatedProduct) {
-                return res.status(404).json({ message: "Product not found" }); // if category not found while doing update operations
+                return res.status(404).json({ message: "Product not found" });
             }
             return res.status(200).json({
                 message: "Product Updated Successfully",

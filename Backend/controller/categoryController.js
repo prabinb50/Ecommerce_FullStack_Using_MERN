@@ -6,11 +6,10 @@ import { Category } from '../Schema/categorySchema.js';
 export const createCategory = async (req, res) => {
     try {
         // console.log(req.file);
-
         // check if name already exists
         const categoryExist = await Category.findOne({ name: req.body.name });
         if (categoryExist) {
-            return res.status(409).json({ message: "Category already exists" });
+            return res.status(409).json({ message: "Category already exists, please choose different name" });
         }
 
         // Handle the image upload before saving to database....upload a file (cloudinary - used as storage)
@@ -48,15 +47,15 @@ export const getCategoryById = async (req, res) => {
     try {
         const singleCategory = await Category.findById(req.params.id);
 
+        // category if not found
         if (!singleCategory) {
-            return res.status(404).json({ message: "Category not found" }); // category if not found
+            return res.status(404).json({ message: "Category not found" });
         }
 
         return res.status(500).json({
             message: "Single category feteched succesfully",
             data: singleCategory
-        }
-        )
+        })
     } catch (error) {
         return res.status(500).json({ message: "Internal server error" });
     }
@@ -65,7 +64,26 @@ export const getCategoryById = async (req, res) => {
 // 4. Update a particular category
 export const updateCategoryById = async (req, res) => {
     try {
+        // image (i.e., update gardaa image pathayo vaney) vako case maa yesaree handle garney
+        if (req.file) {
+            const cloudinaryResponse = await cloudinary.uploader.upload(req.file.path);
+            const updatedCategory = await Category.findByIdAndUpdate(req.params.id, { ...req.body, imageUrl: cloudinaryResponse.secure_url }, { new: true });
+
+            // if category not found while doing update operations
+            if (!updatedCategory) {
+                return res.status(404).json({ message: "Category not found" });
+            }
+            return res.status(200).json({
+                message: "Category Updated Successfully",
+                data: updatedCategory
+            })
+        }
+
+        // if image is not uploaded then dont handle the image upload part
         const updatedCategory = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedCategory) {
+            return res.status(404).json({ message: "Category not found" })
+        }
         return res.status(200).json({
             message: "Category Updated Successfully",
             data: updatedCategory
@@ -78,11 +96,13 @@ export const updateCategoryById = async (req, res) => {
 // 5. Delete a particular category
 export const deleteCategoryById = async (req, res) => {
     try {
-        const deletedCategory = await Category.findByIdAndDelete(req.params.id);
-
-        if (!deletedCategory) {
-            return res.status(404).json({ message: "Category not found" }); // if category not found while doing delete operations
+        // check if category exits
+        const checkCategory = await Category.findById(req.params.id);
+        if (!checkCategory) {
+            return res.status(404).json({ message: "Category not found" });
         }
+
+        const deletedCategory = await Category.findByIdAndDelete(req.params.id);
         return res.status(200).json({
             message: "Category deleted suceesfully",
             data: deletedCategory
