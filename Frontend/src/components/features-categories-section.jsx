@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -6,6 +6,13 @@ import { Pagination } from 'swiper/modules';
 import myImage from "../../public/f5.jpg";
 
 export default function FeaturesCategoriesSection() {
+
+    // useState hook
+    // const [variable, setterFunction] = useState(intialValue)
+    const [name, setName] = useState("Prabin Joshi");
+    const handleNameChange = () => {
+        setName("prabin joshi change");
+    }
 
     const categories = [
         {
@@ -41,6 +48,8 @@ export default function FeaturesCategoriesSection() {
 
     return (
         <div className='w-10/12 mx-auto space-y-8  mt-24'>
+            {name}
+            <button className='bg-green-500' onClick={handleNameChange}>Change Name</button>
             {/* left child */}
             <p className='text-3xl font-semibold'>Featured Categories</p>
 

@@ -107,6 +107,7 @@ export const updateProductById = async (req, res) => {
 // 4) Delete a particular product
 export const deleteProductById = async (req, res) => {
     try {
+        // Check if the product exists first
         const checkProduct = await Product.findById(req.params.id);
         if (!checkProduct) {
             return res.status(404).json({
@@ -114,6 +115,7 @@ export const deleteProductById = async (req, res) => {
             })
         }
 
+        // Proceed with deletion only if the product exists
         const deletedProduct = await Product.findByIdAndDelete(req.params.id);
         return res.status(200).json({
             message: "Single product deleted successfully",

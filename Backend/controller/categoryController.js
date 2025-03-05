@@ -96,12 +96,13 @@ export const updateCategoryById = async (req, res) => {
 // 5. Delete a particular category
 export const deleteCategoryById = async (req, res) => {
     try {
-        // check if category exits
+        // check if category exits first
         const checkCategory = await Category.findById(req.params.id);
         if (!checkCategory) {
             return res.status(404).json({ message: "Category not found" });
         }
 
+        // Proceed with deletion only if the product exists
         const deletedCategory = await Category.findByIdAndDelete(req.params.id);
         return res.status(200).json({
             message: "Category deleted suceesfully",
