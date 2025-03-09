@@ -89,11 +89,6 @@ export const getAllUsers = async (req, res) => {
 // Get user by Id
 export const getUserById = async (req, res) => {
     try {
-        // Validate the id format before querying
-        // Validate MongoDB ObjectId format
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-            return res.status(400).json({ message: "Invalid user ID format" });
-        }
 
         const singleUser = await User.findById(req.params.id);
         if (!singleUser) {
@@ -115,12 +110,23 @@ export const getUserById = async (req, res) => {
 export const updateUserById = async (req, res) => {
     try {
         // Validate MongoDB ObjectId format
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-            return res.status(400).json({ message: "Invalid user ID format" });
+        // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        //     return res.status(400).json({ message: "Invalid user ID format" });
+        // }
+
+        // if password is given for update
+        if (registerUser.body.password) {
+            const newHashPassword = await bcrypt.hash(req.body.password, saltRounds);
+            const updatedUser = await User.findOneAndUpdate(req.body.email, { ...req.body, password: newHashPassword }, { new: true });
+            return res.status(200).json({
+                message: "User updated with password successfully",
+                data: updatedUser,
+                error: error
+            })
         }
 
         // if image is not uploaded in user's operations then dont handle the image upload part
-        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const updatedUser = await User.findOneAndUpdate(req.params.id, req.body, { new: true });
 
         if (!updatedUser) {
             return res.status(404).json({ message: "User not found" })

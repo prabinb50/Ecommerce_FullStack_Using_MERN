@@ -4,11 +4,11 @@ import { NavLink } from "react-router"
 
 export default function SingleProductCard({ eachItem }) {
     return (
-        <NavLink to={`/shop/${eachItem.productName}`}>
+        <NavLink to={`/shop/${eachItem._id}`}>
             <div className='border border-gray-300 rounded-md flex flex-col items-center p-4 space-y-1.5'>
-                <img src={eachItem.image} alt="" />
-                <p className='font-semibold opacity-50 text-xs'>{eachItem.categoryName}</p>
-                <p className='font-semibold text-sm'>{eachItem.productName}</p>
+                <img src={eachItem.imageUrl} className='h-44' alt="" />
+                <p className='font-semibold opacity-50 text-xs'>{eachItem.category}</p>
+                <p className='font-semibold text-sm'>{eachItem.name}</p>
 
                 <div className='flex items-center gap-2'>
                     <ReactStars
@@ -17,7 +17,7 @@ export default function SingleProductCard({ eachItem }) {
                         value={4.5}
                         color2={'#ffd700'} />
 
-                    <p className='font-semibold opacity-70 text-sm'>{eachItem.rating} ({eachItem.review})</p>
+                    <p className='font-semibold opacity-70 text-sm'>2 (4)</p>
                 </div>
 
                 <div className='flex items-center justify-between w-full'>
