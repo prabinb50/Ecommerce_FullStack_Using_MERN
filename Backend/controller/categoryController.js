@@ -17,7 +17,7 @@ export const createCategory = async (req, res) => {
 
         const newCategory = await new Category({ ...req.body, imageUrl: cloudinaryResponse.secure_url }).save();
         return res.status(201).json({
-            message: "Created created successfully",
+            message: "Category created successfully",
             data: newCategory,
         })
     } catch (error) {

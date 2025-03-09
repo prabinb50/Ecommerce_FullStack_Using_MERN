@@ -181,7 +181,6 @@ export default function PopulaeProductSection() {
                         // </div>
                     ))
                 }
-
             </div>
         </div>
     )
