@@ -6,7 +6,7 @@ const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router();
 
-router.post("/", verifyToken, upload.single("imageUrl"), createProduct);
+router.post("/", upload.single("imageUrl"), createProduct);
 router.get("/", getAllProducts);
 router.get("/:id", getProductById);
 router.patch("/:id", verifyToken, upload.single("imageUrl"), updateProductById);
