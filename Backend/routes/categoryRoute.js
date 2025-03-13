@@ -6,10 +6,10 @@ import { createCategory, deleteCategoryById, getAllCategories, getCategoryById, 
 import { verifyToken } from "../middleware/verifyToken.js";
 
 
-router.post("/", verifyToken, upload.single('imageUrl'), createCategory);
+router.post("/", upload.single('imageUrl'), createCategory);
 router.get("/", getAllCategories);
 router.get("/:id", getCategoryById);
-router.patch("/:id", verifyToken, updateCategoryById);
-router.delete("/:id", verifyToken, deleteCategoryById);
+router.patch("/:id", updateCategoryById);
+router.delete("/:id", deleteCategoryById);
 
 export default router;

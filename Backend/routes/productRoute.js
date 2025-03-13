@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/", upload.single("imageUrl"), createProduct);
 router.get("/", getAllProducts);
 router.get("/:id", getProductById);
-router.patch("/:id", verifyToken, upload.single("imageUrl"), updateProductById);
-router.delete("/:id", verifyToken, deleteProductById);
+router.patch("/:id", upload.single("imageUrl"), updateProductById);
+router.delete("/:id", deleteProductById);
 
 export default router;
