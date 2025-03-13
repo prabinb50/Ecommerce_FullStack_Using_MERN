@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import { LoaderCircle } from 'lucide-react';
+import React, { useEffect, useState } from 'react'
 
 export default function Dashboard() {
 
@@ -9,12 +10,14 @@ export default function Dashboard() {
     const [previousPrice, setPreviousPrice] = useState(null);
     const [category, setCategory] = useState("");
     const [image, setImage] = useState(null);
+    const [IsSubmitting, setIsSubmitting] = useState(false);
 
     // console.log(name, descrption, price, previousPrice, category, image)
 
     const createProduct = async (e) => {
         e.preventDefault();
         try {
+            setIsSubmitting(true);
             const formData = new FormData();
             formData.append("name", name);
             formData.append("description", descrption);
@@ -25,11 +28,34 @@ export default function Dashboard() {
 
             const response = await axios.post("http://localhost:3000/products", formData);
             console.log(response);
+            setIsSubmitting(false);
+            setname("");
+            setDescription("");
+            setPrice("");
+            setPreviousPrice("");
+            setCategory("");
+            setImage("");
 
         } catch (error) {
-            console.log("Something went wrong", error)
+            console.log("Something went wrong", error);
+            setIsSubmitting(false);
         }
     }
+
+    // Fetch All Products
+    const [allProducts, setAllProducts] = useState();
+    const fetchedAllProducts = async () => {
+        try {
+            const response = await axios.get("http://localhost:3000/products");
+            setAllProducts(response.data.data);
+        } catch (error) {
+            console.log("Something went wrong", error);
+        }
+    }
+
+    useEffect(() => {
+        fetchedAllProducts();
+    }, [])
 
     return (
         <div className='w-10/12 mx-auto'>
@@ -47,8 +73,14 @@ export default function Dashboard() {
 
                 <input type="file" className='border border-gray-400 p-2 rounded-md' onChange={(e) => setImage(e.target.files[0])} required />
 
-                <button className='bg-green-500 border-none text-white px-6 py-3' type='submit'>Create Product</button>
+                <button className='bg-green-500 border-none text-white px-6 py-3 flex items-center justify-center gap-1' type='submit' disabled={IsSubmitting}>{IsSubmitting && <LoaderCircle className='animate-spin' size={20}></LoaderCircle>}<span>Create Product</span></button>
             </form>
+
+            <div>
+                {allProducts?.map((item) => (
+                    <div key={item._id}>{item.name}</div>
+                ))}
+            </div>
         </div>
     )
 }
