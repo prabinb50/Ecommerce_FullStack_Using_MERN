@@ -136,7 +136,7 @@ export default function PopulaeProductSection() {
     const fetchedAllProducts = async () => {
         try {
             const response = await axios.get("http://localhost:3000/products");
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setAllProducts(response.data.data);
         } catch (error) {
             console.log("Something went wrong", error);
