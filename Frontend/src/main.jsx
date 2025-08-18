@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router";
-
 import Dashboard from "./pages/dashboard.jsx";
 import SingleCategory from "./pages/single-category.jsx";
 import TopNavbar from "./components/top-navbar.jsx";
@@ -20,13 +19,10 @@ import Reset_Password from "./components/forget-password.jsx";
 import Shop from "./pages/shop.jsx";
 import Docs from "./pages/docs.jsx";
 
-
 export function Root() {
-
   const location = useLocation();
 
   return (
-
     <StrictMode>
       {location.pathname !== "/sign_in" && location.pathname !== "/sign_up" && location.pathname !== "/reset_password" && <div className="space-y-4">
         <TopNavbar></TopNavbar>
@@ -34,7 +30,6 @@ export function Root() {
         <BottomNavbar></BottomNavbar>
         <hr className='text-gray-200' />
       </div>}
-
 
       <Routes>
         <Route path="/" element={<App />} />
@@ -47,7 +42,6 @@ export function Root() {
         <Route path="/sign_up" element={<SignUp />} />
         <Route path="/reset_password" element={<Reset_Password />} />
         <Route path="/docs" element={<Docs></Docs>}></Route>
-
         <Route path="/categories/:id" element={<SingleCategory />} />
         <Route path="/shop/:id" element={<ProductDescerption />} />
       </Routes>

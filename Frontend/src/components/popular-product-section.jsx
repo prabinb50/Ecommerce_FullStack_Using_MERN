@@ -148,7 +148,7 @@ export default function PopulaeProductSection() {
     }, [])
 
     return (
-        <div className='w-10/12 mx-auto space-y-8 mt-24'>
+        <div className='w-11/12 mx-auto space-y-6 py-10 md:py-12'>
             {/* <button onClick={() => setName("Prabin Updated")}>Chnage Name</button> */}
             {/* First child */}
             <p className='text-3xl font-semibold'>Popular Products</p>
