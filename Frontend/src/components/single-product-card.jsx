@@ -5,10 +5,10 @@ import { NavLink } from "react-router"
 export default function SingleProductCard({ eachItem }) {
     return (
         <NavLink to={`/shop/${eachItem._id}`}>
-            <div className='border border-gray-300 rounded-md flex flex-col items-center p-4 space-y-1.5'>
-                <img src={eachItem.imageUrl} className='h-44' alt="" />
-                <p className='font-semibold opacity-50 text-xs'>{eachItem.category}</p>
-                <p className='font-semibold text-sm'>{eachItem.name}</p>
+            <div className='border border-gray-300 rounded-md flex flex-col items-center p-4 space-y-1 cursor-pointer'>
+                <img src={eachItem.imageUrl} className='h-44' alt="" loading='lazy' />
+                <p className='font-semibold opacity-50 text-sm'>{eachItem.category}</p>
+                <p className='font-semibold text-base opacity-80 text-nowrap'>{eachItem.name}</p>
 
                 <div className='flex items-center gap-2'>
                     <ReactStars
@@ -17,39 +17,14 @@ export default function SingleProductCard({ eachItem }) {
                         value={4.5}
                         color2={'#ffd700'} />
 
-                    <p className='font-semibold opacity-70 text-sm'>2 (4)</p>
+                    <p className='font-semibold opacity-50 text-sm'>4.5 (5)</p>
                 </div>
 
-                <div className='flex items-center justify-between w-full'>
-                    <p className='font-semibold'>${eachItem.price} <span className='opacity-70 '>${eachItem.previousPrice}</span></p>
-                    <button className='bg-green-500 text-white font-semibold rounded-md px-4 py-1 text-sm'> + Add</button>
+                <div className='flex items-center justify-between w-full mt-3'>
+                    <p className='font-semibold opacity-70'>${eachItem.price} <span className='opacity-50 line-through'>${eachItem.previousPrice}</span></p>
+                    <button className='bg-green-500 text-white font-semibold rounded px-3 py-2 text-sm cursor-pointer'> + Add</button>
                 </div>
             </div>
-            {/* <div className=" border border-gray-300 rounded-md flex  flex-col items-center justify-center  p-4 space-y-1.5  ">
-                <img
-                    src={myImage}
-                    alt=""
-                />
-                <p className=" font-semibold opacity-50 text-xs">Snack & Munchies</p>
-                <p className=" font-semibold text-sm">Haldirams Sev Bhujia</p>
-                <div className=" flex items-center gap-2">
-                    <ReactStars
-                        count={5}
-                        size={16}
-                        value={4.5}
-                        color2={"#ffd700"}
-                    />
-                    <p className=" font-semibold opacity-70 text-sm">4.3 (4)</p>
-                </div>
-
-                <div className=" flex items-center justify-between w-full">
-                    <p className=" font-semibold">
-                        $21.6 <span className=" opacity-70">$24</span>{" "}
-                    </p>
-                    <button className=" bg-green-500 text-white font-semibold rounded-md px-4 py-1 text-xs">Add</button>
-                </div>
-            </div> */}
         </NavLink>
-
     )
 }

@@ -20,8 +20,8 @@ const footerData = {
 
 export default function Footer() {
     return (
-        <div className='bg-gray-100 mt-24'>
-            <div className='w-10/12 mx-auto space-y-8 text-sm pt-15'>
+        <div className='bg-gray-100'>
+            <div className='w-11/12 mx-auto space-y-8 text-base py-10 md:py-12'>
                 {/* first child */}
                 <div className='grid grid-cols-6 gap-6'>
                     {/* Categories Section Split into Two Columns */}
@@ -62,8 +62,8 @@ export default function Footer() {
                 <hr className='text-gray-200' />
 
                 {/* third child */}
-                <div className='flex justify-between pb-15'>
-                    <p className='font-semibold text-sm opacity-50'>© 2022 - 2025 FreshCart eCommerce HTML Template. All rights reserved. Powered by <br /><span className='text-green-500'>Codescandy</span>.
+                <div className='flex justify-between pb-2'>
+                    <p className='font-semibold text-sm opacity-50'>© 2022 - 2025 FreshCart eCommerce. All rights reserved. Designed and Developed by <br /><span className='text-green-500'>Prabin Joshi</span>.
                     </p>
 
                     <div className='flex gap-2 items-center'>

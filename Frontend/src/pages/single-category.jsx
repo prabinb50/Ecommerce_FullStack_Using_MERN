@@ -1,6 +1,6 @@
 import React from 'react'
 import SingleProductCard from '../components/single-product-card'
-import myImage from "../../public/f1.jpg"
+import myImage from "../../public/product-img-1.jpg"
 
 export default function SingleCategory() {
     const products = [

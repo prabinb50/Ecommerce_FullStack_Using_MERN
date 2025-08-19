@@ -50,7 +50,7 @@ export default function FeaturesCategoriesSection() {
                                     loading='lazy'
                                     className='object-cover'
                                 />
-                                <p className='text-sm font-semibold opacity-70'>{eachItem.name}</p>
+                                <p className='text-sm font-semibold opacity-60'>{eachItem.name}</p>
                             </div>
                         </SwiperSlide>
                     ))
